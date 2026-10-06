@@ -1,0 +1,371 @@
+Thu Jul 16 21:00:00 2026 ValdikSS <iam AT valdikss DOT org DOT ru>
+
+	--- RELEASE OF THE VERSION V. 2.0.2 ---
+
+	* Add 1284DeviceIDs of Samsung and Xerox printers from Fedora
+	* Add support for manual duplex on Samsung SCX-4521F
+	* Add support for
+	  - Samsung SL-M2020, SL-M2070 series
+	  - Samsung ML-1670, ML-1860 series,
+	  - Samsung SCX-3400,
+	  - Samsung M262x 282x Series, M267x 287x Series, M283x Series,
+	  - HP Laser 10x, HP Laser MFP 13x,
+	  - Xerox Phaser 3020, 3052, 3260,
+	  - Xerox WorkCentre 3025, 3215, 3225.
+	* Add additional Page Sizes present in ULD driver
+	* Fix A5 printing on ML-15x0, ML-16x0, ML-17x0, ML-225x,
+	  Phaser 3117 (fixed-bandwidth printers, Debian bug 477088)
+	* Fixed uninitialized variable to prevent premature print termination
+	* Small build system fixes
+
+Wed Apr  3 01:06:00 2024 Till Kamppeter <till DOT kamppeter AT gmail DOT com>
+
+	--- RELEASE OF THE VERSION V. 2.0.1 ---
+
+	* Let CXX argument of "make" actually be used (Upstreamized
+	  Ubuntu/debian patch).
+	* Make build of *.drv files reproducible (Upstreamized
+	  Ubuntu/debian patch).
+	* Fix alignment for SpliX to work correctly on ARM (Upstreamized
+	  Ubuntu/debian patch).
+	* Updated AUTHORS file.
+	* Added README.md file, removed near-empty README.
+	* Added .gitignore
+
+Mon Aug 26 16:51:01 2013 Till Kamppeter <till DOT kamppeter AT gmail DOT com>
+
+	* Fixed margins for Samsung ML-1915 (SF bug #84)
+	* Generated pre-made PPDs for the newly supported printers.
+	* Added new printer:
+		- Samsung ML-2160 (SF patch #20)
+		- Samsung ML-2165 (SF patch #15)
+		- Samsung ML-3310(ND) (SF bug #86)
+	* Added "drv" target to the top level Makefile (SF patch #18).
+	* Renamed the ppd/*.drv files to ppd/*.drv.in to fix the build process
+	  (SF patch #17, SF bug #79).
+	* When installing the *.drv files, install them as
+	  "splix-<manufacturer>.drv", to avoid name clashes (SF patch #16).
+
+Mon Apr  8 00:08:01 2013 Till Kamppeter <till DOT kamppeter AT gmail DOT com>
+
+	* When a print job sent to CUPS 1.6.2 from iOS is converted to
+	  PostScript with the pdftops filter of cups-filters, the resulting
+	  PostScript does not contain a "%%Creator" line in its header, which
+	  is used by pstoqpdl as marker for where to insert MediaChoice amd
+	  color correction info. This change inserts the missing "%%Creator"
+	  when it reaches "%%EndComments". It also corrects a minor error in
+	  the existing code which was trying to match an incorrect string.
+	  Thanks to Martin Crossley (martin at crossleys dot biz) for the
+	  patch (SF: #3610240).
+
+Fri Jul  7 22:33:01 2012 Till Kamppeter <till DOT kamppeter AT gmail DOT com>
+
+	* Commented out the entries for the Samsung CLP-610 and CLP-610ND
+	  in ppd/smasung.drv and ppd/Makefile as these two printers are
+	  reported to not work with SpliX. Removed also the pre-built PPD
+	  files for these printers (Ubuntu bug #898986).
+
+Wed Feb 29 15:07:01 2012 Till Kamppeter <till DOT kamppeter AT gmail DOT com>
+
+	* Allow installing only the CUPS .drv file instead of ready-made PPD
+	  files (SF: #3446934, thanks to Jiri Popelka from Red Hat for the
+	  patch).
+
+	* Allow installing PPD files into a custom directory (SF: #3446190,
+	  thanks to Jiri Popelka from Red Hat for the patch).
+
+	* Do not strip the compiled executable when installing via "make
+	  install" to preserve the symbols when the compilation was done
+	  in debug mode (SF: #3444332, thanks to Jiri Popelka from Red Hat for
+	  the patch).
+
+	* Removed executable bit from the files include/algo0x0d.h,
+	  include/algo0x0e.h, src/algo0x0e.cpp, ppd/po/pt.po (SF: #3444284,
+	  thanks to Jiri Popelka from Red Hat).
+
+	* Corrected address of the FSF (SF: #3444266, thanks to Jiri Popelka
+	  from Red Hat for the patch).
+
+Wed Dec 06 22:46:01 2011 Till Kamppeter <till DOT kamppeter AT gmail DOT com>
+
+	* Added new printer:
+		- Samsung SCX-3200 (Ubuntu bug #898385)
+
+	* Updated translation files po/fr.po and po/pt.po for changed page
+	  size names in CUPS 1.5.x.
+
+	* Rebuilt all PPDs with ppdc of CUPS 1.5.0.
+
+Wed Jul 21 17:11:01 2011 Till Kamppeter <till DOT kamppeter AT gmail DOT com>
+
+	* Added new printer:
+		- Xerox Phaser 3155 (SF Open Discussion forum)
+
+	* Updated translation files po/fr.po and po/pt.po.
+
+Wed Jul 20 17:44:01 2011 Till Kamppeter <till DOT kamppeter AT gmail DOT com>
+
+	* Added new printers:
+		- Samsung CLP-310 (SF: #3196609)
+		- Samsung CLP-315 (SF: #3196609)
+		- Xerox Phaser 3140 (SF Open Discussion forum)
+
+	* Updated translation files po/fr.po and po/pt.po.
+
+Mon Jun 27 12:52:01 2011 Till Kamppeter <till DOT kamppeter AT gmail DOT com>
+
+	* Make SpliX query DefaultInputSlot from the PPD for the input slot
+	  name, when InputSlot is NULL (SF: #3319051).
+
+	* Moved the cms profiles from cups/model/MFR/cms to cups/profiles/MFR
+	  to stop making cups-driverd issuing error messages (SF: #3319110)
+
+	* Add missing delete[] in two error paths (SF patch #3302528).
+
+	* Fixed double free in pstoqpdl filter, which happens when the
+	  color profile collection is missing files. Thanks to Leonardo Hamada
+	  for thr patch (Ubuntu bug #714259, SF: #3124844).
+
+Sat Feb 19 19:23:01 2011 Till Kamppeter <till DOT kamppeter AT gmail DOT com>
+
+	* Link with libpthread when building with multithreading.
+
+	* Added new printers:
+		- Xerox WorkCentre PE114e (SF: #2853726)
+		- Toshiba eSTUDIO180S (SF: #2853726)
+		- Samsung ML-3471ND (SF Open Discussion forum)
+		- Samsung CLP-310N (SF Open Discussion forum)
+
+	* Updated translation files po/fr.po and po/pt.po.
+
+	* Corrected typo in ppd/Makefile which prevented from building the
+	translated PPDs.
+
+	* Added missing build information from the Samsung ML-2240 to
+	ppd/samsung.drv and ppd/Makefile.
+
+	* Rebuilt all PPDs with ppdc of CUPS 1.4.5.
+
+	* Added support for the following QPDL-3 printers (SF: #3046271):
+		- Samsung ML-1660
+		- Samsung ML-1910
+		- Samsung ML-1915
+		- Samsung ML-2525
+		- Samsung ML-2525W
+		- Samsung ML-2580
+		- Samsung ML-2580N
+		- Samsung SCX-4600
+		- Samsung SCX-4623F
+		- Samsung SCX-4623FW
+		- Samsung SCX-5330N
+		- Samsung SCX-5530FN
+
+	* Samsung ML-3050, ML-3051, and ML-3051ND are also QPDL 3, corrected.
+
+	* Allow QPDL Version 3 in the PPD files (SF: #3046271).
+
+	* Switched to the more lightweight JBIG85 library instead of to
+	the standard JBIG library. Thanks to Jindrich Makovicka for the
+	patch.
+
+	* Fixed memory leak in the pstoqpdl filter. Thanks to Jindrich
+	Makovicka for the patch.
+
+	* On the CLP-300, SpliX sometimes produces random pixels at the
+	bottom of the page. The reason is that the page image is copied to
+	a buffer rounded to a band height, which is then compressed and
+	sent to the printer, but the added lines are not zeroed after
+	copying. The fix simply calls memset() to clear these added
+	pixels. Thanks to Jindrich Makovicka for the patch.
+
+	* Use an array of two integers, instead of an array of single
+	integers which is twice as big, for the offset selection code in
+	algo0x11.cpp.  The resulting binary code should be the same, but
+	this change makes more clear what is happening.
+
+Mon Aug  2 13:39:01 2010 Till Kamppeter <till DOT kamppeter AT gmail DOT com>
+
+	* Corrected PPD version number in include/version.h. We have
+	removed the "SpliX V. " from it in the PPDs to fulfill the PPD
+	specs and so we have to remove the "SpliX V. " also here so that
+	the PPD version checking of the driver works again.
+
+Sun Aug  1 12:24:01 2010 Till Kamppeter <till DOT kamppeter AT gmail DOT com>
+
+	* Added support for new printer according to user reports at
+	  SourceForge (Open Discussion forum):
+		- Samsung SCX-4521F
+
+Sat Jul 31 18:41:01 2010 Till Kamppeter <till DOT kamppeter AT gmail DOT com>
+
+	* Fixed "*Product:" lines in the PPDs. They should contain the model
+	  name and not "XXX Ghostscript".
+
+	* Set "*FileVersion:" of the PPDs to 2.0.0, to satisfy cupstestppd.
+
+	* Fixed bashisms in compile.sh.
+
+	* Added support for new printers according to user reports at
+	  SourceForge (Open Discussion forum):
+		- Samsung SCX-4216F
+		- Xerox WorkCentre PE16
+		- Lexmark X215 MFP
+
+Thu Jul 29 11:56:01 2010 Till Kamppeter <till DOT kamppeter AT gmail DOT com>
+
+	* Fixed gcc 4.5 incompatibility in src/ppdfile.cpp (Debian bug
+	  #565097).
+
+	* Fixed UI strings for the Altitude/Air Pressure options. In the UI
+	  strings the settings "High" and "Low" were the wrong way around
+	  (Ubuntu LP: #605539).
+
+	* Added support for new printers according to user reports at
+	  SourceForge (bug tracker, forums) and Ubuntu (Launchpad):
+		- Samsung SCX-4100 (SF: #2980269)
+		- Samsung SCX-4300 (Help forum)
+		- Samsung ML-2015 (SF: #2975570)
+		- Samsung ML-2240 (Open Discussion forum)
+		- Samsung ML-3051(ND) (SF: #2927884)
+		- Samsung CLP-610ND (Ubuntu LP: #505423, LP: #510832)
+		- Samsung SF-565P (Open Discussion forum)
+		- Xerox Phaser 3124 (SF: #2802175)
+
+	* Applied patch from SourceForge (ID: 2880411):
+		Reorganized code and handle of white scanlines issue.
+
+		A printable page is divided in a number of horizontal bands
+		that is 128 pixels height in 600dpi or 64 pixels height at
+		300dpi mode.
+		There was a case error in the encoder when the band begins
+		with blank scan-lines, this made the encoded band as if there
+		was exactly 129 pixels in height (or 65 pixels at 300 dpi).
+		When this 129th scan-line was decoded on the printer, this
+		scan-line appeared at some location on the page near the
+		affected band, in studied case of the dump file sent, just
+		over it.
+		These mysterious marks were in fact the last scan-line of
+		the band but it was offset by one scan-line down out of the
+		band area and the printer put it on other location.
+
+	* Applied patch from SourceForge (ID: 2823497):
+		After upgrading to CUPS 1.3.11, SpliX stopped working due to
+		changes in the Postscript produced - it does not start with
+		%%Creator, but with %%LanguageLevel tag. The attached patch
+		adds %%LanguageLevel check to the respective if condition so
+		the end of header is recognized.
+
+Fri Feb 6 03:02:01 2009 Aurélien Croc <programmation AT ap2c DOT org>
+	* Add:
+		- Support for SCX 4500 (by Pablo Mazzini)
+	--- RELEASE OF THE VERSION V. 2.0.0 ---
+
+Mon Nov 24 01:15:01 2008 Aurélien Croc <programmation AT ap2c DOT org>
+	* Bug correction:
+		Lots of bug corrected since Feb 10th
+	* Add:
+		- Support for printer which use the algorithm 0x0D
+		- Support for printer which use the algorithm 0x0E
+		- Localization of the PPD in brazilian portuguese
+
+Sun Feb 10 18:25:47 2008 Aurélien Croc <programmation AT ap2c DOT org>
+	* Driver rewritten from scratch
+	* Improvment:
+		- Margin bug solved
+		- Algorithm 0x11 optimized
+		- Black color correction optimized
+		- Color profile used for color printers
+		- New printer options (Altitude...)
+		- New paper size supported (Oficio, Size6, No9Env)
+		- Manual duplex supported
+		- Reversed duplex supported
+		- QPDL V. 5 supported
+		- Driver optimized for multi-core processors
+	* Better PPD translations
+
+Fri Feb 09 03:39:12 2008 Aurélien Croc <programmation AT ap2c DOT org>
+	* Replace the current SpliX version by the branch 2.0
+
+Sun Jan 27 23:47:45 2008 Aurélien Croc <programmation AT ap2c DOT org>
+	* Add:
+		The JBIG compression used is or was under patent. A new 
+		Makefile rule permits to not compile the JBIG code.
+	--- RELEASE OF THE VERSION V. 1.1.1 ---
+
+Fri Nov 16 03:08:01 2007 Aurélien Croc <programmation AT ap2c DOT org>
+	* Add:
+		The JBIG compression used by newer printers
+		LOTS of new printer supported
+	* Implement new debugging tools
+	* Rewrite all the PPD files
+	* Reformat the code
+	* Bug fix:
+		Fix the Duplex bug
+		Prevent from loading an old PPD file
+		The code should now compile under IRIX
+	--- RELEASE OF THE VERSION V. 1.1.0 ---
+
+Fri Oct 19 17:12:28 2007 Aurélien Croc <programmation AT ap2c DOT org>
+	* Bug fix:
+		The X clipping was miss-calculated.
+	--- RELEASE OF THE VERSION V. 1.0.2 ---
+
+Sat Feb 10 15:18:01 2007 Aurélien Croc <programmation AT ap2c DOT org>
+	* Bug fix:
+		ML-2010 resolution bug is now fixed
+	--- RELEASE OF THE VERSION V. 1.0.1-1 ---
+
+Sun Feb 04 02:45:18 2007 Aurélien Croc <programmation AT ap2c DOT org>
+	* Add:
+		Support for QPDL v. 0, 1 and 2
+		Duplex support
+		new PJL informations
+		new printer support (Xerox..)
+	* Bug fix:
+		300 DPI resolution
+		monochrome document printed on color printers
+	* Rewrite some parts of the PPD files
+
+	--- RELEASE OF THE VERSION V. 1.0.1 ---
+		
+Wed Nov 29 11:58:45 2006 Aurélien Croc <programmation AT ap2c DOT org>
+	* Add:
+		Compression optimization: skip empty bands
+		Ghostscript correction for black layer (color printers)
+
+Sun Nov 26 04:21:15 2006 Aurélien Croc <programmation AT ap2c DOT org>
+	* Add:
+		English translation of the SPL-2 documentation
+	* Bug fix:
+		Fix the different SPL-C bugs
+
+Sat Nov 11 18:28:57 2006 Aurélien Croc <programmation AT ap2c DOT org>
+	* Add:
+		Color support for CLP-300, CLP-500, CLP-510 and CLP-600
+
+Sat Nov 11 14:27:18 2006 Aurélien Croc <programmation AT ap2c DOT org>
+	* Bug fix:
+		margins are now correct
+
+	--- RELEASE OF THE VERSION V. 0.0.2 ---
+
+Fri Nov 10 17:35:12 2006 Aurélien Croc <programmation AT ap2c DOT org>
+	* Bug fix:
+		Last band bug
+		Makefile bug for FreeBSD users
+	* Add: 
+		support for asymetric resolutions (1200x600 DPI)
+		
+Sun Sep 24 13:45:40 2006 Aurélien Croc <programmation AT ap2c DOT org>
+	* Bug fix:
+		SpliX works with CUPS version 1.2 or later
+		The destination directory is now created by the Makefile
+		The SRT mode is just available for later printers (ML-2250)
+		Bad data sent to printers with 64-Bits architectures
+	* Translation add:
+		German and italian
+
+Thu Aug 25 02:16:22 2006 Aurélien Croc <programmation AT ap2c DOT org>
+	I DECLARE USABLE THE FIRST VERSION: V. 0.0.1
+	        ~~~ HAVE FUN ~~~
+

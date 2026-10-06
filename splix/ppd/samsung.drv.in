@@ -1,0 +1,575 @@
+/*
+ *      samsung.drv                    (C) 2007, Aurélien Croc (AP²C)
+ * 
+ * Contains the Samsung printers drivers
+ *
+ * $Id$
+ */
+
+Manufacturer "Samsung"
+
+#import "version.defs"
+#import "altitude.defs"
+
+
+//
+// Specific black & white printer definition
+//
+{
+    #import "spl2.defs"
+    #import "filter.defs"
+    #import "powersave.defs"
+    #import "tonerdensity.defs"
+    #import "tonersave.defs"
+    #import "jamrecovery.defs"
+
+
+    // Monochrome printers V. 1 (old algorithms)
+    {
+        #import "monochrome-v1.defs"
+        #import "manualduplex.defs"
+        Attribute QPDL QPDLVersion "1"
+        Attribute General DocHeaderValues "<0><2><1>"
+        
+        {
+            Resolution k 1 0 0 0 "300dpi/300 DPI"
+ 
+            ModelName "SCX-4100"
+            PCFileName "scx4100.ppd"
+        } {
+            Resolution k 1 0 0 0 "300dpi/300 DPI"
+ 
+            ModelName "SCX-4200"
+            Attribute "1284DeviceID" "" "MFG:Samsung;MDL:SCX-4200 Series;CMD:GDI;"
+            PCFileName "scx4200.ppd"
+        } {
+            Resolution k 1 0 0 0 "300dpi/300 DPI"
+ 
+            ModelName "SCX-4216F"
+            PCFileName "scx4216f.ppd"
+        } {
+            Resolution k 1 0 0 0 "300dpi/300 DPI"
+ 
+            ModelName "SCX-4300"
+            PCFileName "scx4300.ppd"
+        } {
+            ModelName "SCX-4500"
+            PCFileName "scx4500.ppd"
+        } {
+            ModelName "SCX-4521F"
+            PCFileName "scx4521f.ppd"
+        } {
+            Resolution k 1 0 0 0 "300dpi/300 DPI"
+ 
+            ModelName "SF-565P"
+            PCFileName "sf565p.ppd"
+        }
+
+    // Monochrome printers V. 2 (new algorithms)
+    } {
+        #import "monochrome-v2.defs"
+
+        // QPDL Version 1
+        {
+            Attribute QPDL QPDLVersion "1"
+            Attribute General DocHeaderValues "<0><0><0>"
+    
+            {
+                Resolution k 1 0 0 0 "300dpi/300 DPI"
+                #import "manualduplex.defs"
+                {
+                    ModelName "ML-1510"
+                    PCFileName "ml1510.ppd"
+                    Attribute QPDL FixedBandWidth "True"
+                } {
+                    ModelName "ML-1520"
+                    PCFileName "ml1520.ppd"
+                    Attribute QPDL FixedBandWidth "True"
+                } {
+                    ModelName "ML-1610"
+                    Attribute "1284DeviceID" "" "MFG:Samsung;MDL:ML-1610;CMD:GDI;"
+                    PCFileName "ml1610.ppd"
+                    Attribute QPDL FixedBandWidth "True"
+                } {
+                    ModelName "ML-1710"
+                    PCFileName "ml1710.ppd"
+                    Attribute QPDL FixedBandWidth "True"
+                } {
+                    ModelName "ML-1740"
+                    PCFileName "ml1740.ppd"
+                    Attribute QPDL FixedBandWidth "True"
+                } {
+                    #import "srtmode.defs"
+                    ModelName "ML-1750"
+                    PCFileName "ml1750.ppd"
+                } {
+                    ModelName "ML-2571"
+                    PCFileName "ml2571.ppd"
+                }
+            } {
+                Resolution k 1 0 0 0 "1200dpi/1200 DPI"
+    
+                // Multi-tray
+                InputSlot 3 "Multi/Multi-Purpose Tray"
+                InputSlot 4 "Upper/Tray 1"
+                InputSlot 5 "Lower/Tray 2"
+                InputSlot 6 "Envelope/Envelope Tray"
+                InputSlot 7 "Tray3/Tray 3"
+                // But tray 2, Envelope and Tray3 are options...
+                Installable "OptionTray2/Tray 2 Installed"
+                UIConstraints "*OptionTray2 False *InputSlot Lower"
+                Installable "OptionTrayEnv/Envelope Tray Installed"
+                UIConstraints "*OptionTrayEnv False *InputSlot Envelope"
+                Installable "OptionTray3/Tray 3 Installed"
+                UIConstraints "*OptionTray3 False *InputSlot Tray3"
+    
+                #import "srtmode.defs"
+                {
+                    #import "manualduplex.defs"
+                    Throughput 22
+    		{
+                    	ModelName "ML-2250"
+                    	Attribute "1284DeviceID" "" "MFG:Samsung;MDL:ML-2250;"
+    	                PCFileName "ml2250.ppd"
+                        Attribute QPDL FixedBandWidth "True"
+    		} {
+                    	ModelName "ML-2251"
+    	                PCFileName "ml2251.ppd"
+                        Attribute QPDL FixedBandWidth "True"
+    		}
+                } {
+                    Duplex normal
+    
+                    {
+                            ModelName "ML-3471ND"
+                            PCFileName "ml3471nd.ppd"
+                    } {
+                            ModelName "ML-3560"
+                            PCFileName "ml3560.ppd"
+                    } {
+                        Resolution k 1 0 0 0 "300dpi/300 DPI"
+                        {
+                            ModelName "ML-2150"
+                            PCFileName "ml2150.ppd"
+                        } {
+                            ModelName "ML-2550"
+                            PCFileName "ml2550.ppd"
+                        }
+                    }
+                }
+            }
+        }
+    
+        // QPDL Version 2
+        {
+            Attribute QPDL QPDLVersion "2"
+            Attribute General DocHeaderValues "<0><0><1>"
+    
+            {
+                Resolution k 1 0 0 0 "1200x600dpi/1200x600 DPI"
+                #import "manualduplex.defs"
+    
+                {
+                    ModelName "ML-1630"
+                    PCFileName "ml1630.ppd"
+                    Attribute QPDL FixedBandWidth "True"
+                } {
+                    ModelName "ML-1640"
+                    Attribute "1284DeviceID" "" "MFG:Samsung;MDL:ML-1640 Series;CMD:GDI,FWV;"
+                    PCFileName "ml1640.ppd"
+                    Attribute QPDL FixedBandWidth "True"
+                } {
+                    ModelName "ML-2010"
+                    Attribute "1284DeviceID" "" "MFG:Samsung;MDL:ML-2010;CMD:GDI;"
+                    PCFileName "ml2010.ppd"
+                } {
+                    ModelName "ML-2015"
+                    PCFileName "ml2015.ppd"
+                } {
+                    ModelName "ML-2240"
+                    PCFileName "ml2240.ppd"
+                    Attribute QPDL FixedBandWidth "True"
+                } {
+                    #import "srtmode.defs"
+    
+                    ModelName "ML-2510"
+                    Attribute "1284DeviceID" "" "MFG:Samsung;MDL:ML-2510 Series;CMD:GDI;"
+                    PCFileName "ml2510.ppd"
+                    Attribute QPDL FixedBandWidth "True"
+                }
+            }
+        }
+
+        // QPDL Version 3
+        {
+            Attribute QPDL QPDLVersion "3"
+            Attribute General DocHeaderValues "<0><0><1>"
+    
+            {
+                Resolution k 1 0 0 0 "1200x600dpi/1200x600 DPI"
+                #import "manualduplex.defs"
+    
+                {
+                    ModelName "ML-1660"
+                    Attribute "1284DeviceID" "" "MFG:Samsung;MDL:ML-1660 Series;CMD:GDI,FWV,EXT;"
+                    PCFileName "ml1660.ppd"
+                } {
+                    ModelName "ML-1910"
+                    PCFileName "ml1910.ppd"
+                } {
+                    ModelName "ML-2525"
+                    Attribute "1284DeviceID" "" "MFG:Samsung;MDL:ML-2525 Series;CMD:GDI,FWV,EXT;"
+                    PCFileName "ml2525.ppd"
+                } {
+                    ModelName "ML-2525W"
+                    Attribute "1284DeviceID" "" "MFG:Samsung;MDL:ML-2525W Series;CMD:GDI,FWV,EXT;"
+                    PCFileName "ml2525w.ppd"
+                }
+            } {
+                Resolution k 1 0 0 0 "1200dpi/1200 DPI"
+    
+                {
+                    ModelName "ML-2580"
+                    PCFileName "ml2580.ppd"
+		} {
+                    ModelName "ML-2580N"
+                    PCFileName "ml2580n.ppd"
+		} {
+                    ModelName "ML-3050"
+                    PCFileName "ml3050.ppd"
+		} {
+                    ModelName "ML-3051"
+                    PCFileName "ml3051.ppd"
+		} {
+                    ModelName "ML-3310"
+                    PCFileName "ml3310.ppd"
+		} {
+                    ModelName "SCX-3200"
+                    PCFileName "scx3200.ppd"
+		} {
+                    ModelName "SCX-3400"
+                    PCFileName "scx3400.ppd"
+		} {
+                    ModelName "SCX-4600"
+                    PCFileName "scx4600.ppd"
+		} {
+                    ModelName "SCX-4623f"
+                    PCFileName "scx4623f.ppd"
+		} {
+                    ModelName "SCX-4623fw"
+                    PCFileName "scx4623fw.ppd"
+		}{
+                #import "manualduplex.defs"
+                Attribute QPDL PacketSize "512"
+                {
+                    ModelName "ML-2160"
+                    Attribute "1284DeviceID" "" "MFG:Samsung;MDL:ML-2160 Series;CMD:SPL,FWV,PIC,BDN,EXT;"
+                    PCFileName "ml2160.ppd"
+	        }
+            }
+
+            } {
+                Resolution k 1 0 0 0 "1200dpi/1200 DPI"
+    
+                Duplex normal
+    
+		{
+                    ModelName "ML-3051ND"
+                    PCFileName "ml3051nd.ppd"
+		} {
+                    ModelName "ML-3310ND"
+                    PCFileName "ml3310nd.ppd"
+		} {
+		    ModelName "SCX-5330N"
+                    PCFileName "scx5330n.ppd"
+		} {
+		    ModelName "SCX-5530FN"
+                    PCFileName "scx5530fn.ppd"
+		}
+            }
+        }
+    // Monochrome printers V. 3 (not fully supported, new algorithms)
+    } {
+        #import "monochrome-v3.defs"
+        {
+            Attribute QPDL QPDLVersion "5"
+            Attribute QPDL PacketSize "512"
+            Attribute General DocHeaderValues "<0><0><1>"
+            Attribute "1284DeviceID" "" "MFG:Samsung;CMD:GDI,FWV,EXT;MDL:ML-1860 Series;CLS:PRINTER;"
+            {
+                #import "manualduplex.defs"
+                Resolution k 1 0 0 0 "1200dpi/1200 DPI"
+                {
+                    Attribute QPDL SpecialBandWidth "True"
+                    ModelName "ML-1860"
+                    PCFileName "ml1860.ppd"
+                } {
+                    Attribute QPDL SpecialBandWidth "True"
+                    ModelName "ML-1670"
+                    PCFileName "ml1670.ppd"
+                } {
+                    Attribute QPDL SpecialBandWidth "True"
+                    ModelName "ML-1865"
+                    PCFileName "ml1865.ppd"
+                }
+            }
+        }
+    }
+}
+
+//
+// ML-1915/ML-2165 printers (different margins than the other monochrome
+// printers)
+//
+{
+    HWMargins 12.5 12.5 12.5 12.5
+    #import "spl2basic.defs"
+    #import "filter.defs"
+    #import "powersave.defs"
+    #import "tonerdensity.defs"
+    #import "tonersave.defs"
+    #import "jamrecovery.defs"
+    #import "monochrome-v2.defs"
+
+    {
+        Attribute QPDL QPDLVersion "3"
+        Attribute General DocHeaderValues "<0><0><1>"
+        {
+	    {
+                Resolution k 1 0 0 0 "1200x600dpi/1200x600 DPI"
+                #import "manualduplex.defs"
+                {
+		    Throughput "21"
+
+                    ModelName "ML-1915"
+                    PCFileName "ml1915.ppd"
+	        }
+            } {
+                Resolution k 1 0 0 0 "1200dpi/1200 DPI"
+                {
+                    #import "manualduplex.defs"
+		    Throughput "21"
+
+                    ModelName "ML-2165"
+                    PCFileName "ml2165.ppd"
+                } {
+                    #import "manualduplex.defs"
+                    Throughput "21"
+                    Attribute QPDL PacketSize "512"
+                    Attribute QPDL SpecialBandWidth "True"
+
+                    ModelName "M2020 Series"
+                    PCFileName "m2020.ppd"
+                } {
+                    #import "manualduplex.defs"
+                    Throughput "21"
+                    Attribute QPDL PacketSize "512"
+                    Attribute QPDL SpecialBandWidth "True"
+
+                    ModelName "ML-1865W Series"
+                    PCFileName "ml1865w.ppd"
+                } {
+                    #import "manualduplex.defs"
+                    Throughput "21"
+                    Attribute QPDL PacketSize "512"
+                    Attribute QPDL SpecialBandWidth "True"
+                    Attribute "1284DeviceID" "" "MFG:Samsung;CMD:SPL,URF,FWV,PIC,EXT,DCU;MDL:M2070 Series;CLS:PRINTER;CID:SA_SPLV3_BW;MODE:SCN,SPL3,R000105;STATUS:IDLE;"
+
+                    ModelName "M2070 Series"
+                    PCFileName "m2070.ppd"
+                } {
+                    Duplex normal
+                    Throughput "21"
+                    Attribute QPDL PacketSize "512"
+                    Attribute QPDL SpecialBandWidth "True"
+                    {
+                        ModelName "M262x 282x Series"
+                        PCFileName "m262x.ppd"
+                        Attribute "1284DeviceID" "" "MFG:Samsung;CMD:SPL;MDL:M262x 282x Series"
+                    } {
+                        ModelName "M267x 287x Series"
+                        PCFileName "m267x.ppd"
+                        Attribute "1284DeviceID" "" "MFG:Samsung;CMD:SPL;MDL:M267x 287x Series"
+                    } {
+                        ModelName "M283x Series"
+                        PCFileName "m283x.ppd"
+                        Attribute "1284DeviceID" "" "MFG:Samsung;CMD:SPL;MDL:M283x Series"
+                    }
+                }
+            }
+	}
+    }
+}
+
+
+
+//
+// Specific color printer definition
+//
+{
+    #import "spl2.defs"
+    #import "filterColor.defs"
+    #import "powersave.defs"
+
+    // Color printers V. 1 (old algorithms)
+    {
+        #import "color-v1.defs"
+        #import "jamrecovery.defs"
+
+        // Multi-tray
+        InputSlot 3 "Multi/Multi-Purpose Tray"
+        InputSlot 4 "Upper/Tray 1"
+        InputSlot 5 "Lower/Tray 2"
+        // But tray 2 is optional..
+        Installable "OptionTray2/Tray 2 Installed"
+        UIConstraints "*OptionTray2 False *InputSlot Lower"
+
+        Resolution - 1 0 0 0 "1200x600dpi/1200x600 DPI"
+        Resolution - 1 0 0 0 "1200dpi/1200 DPI"
+
+        Duplex normal
+
+        Attribute General DocHeaderValues "<0><0><1>"
+        {
+            Attribute QPDL QPDLVersion "1"
+
+            {
+                Attribute General CMSFile "CLP-500"
+                Throughput 20
+
+		{
+                	ModelName "CLP-500"
+	                PCFileName "clp500.ppd"
+		} {
+                	ModelName "CLP-550"
+	                PCFileName "clp550.ppd"
+		}
+            } {
+                Attribute General CMSFile "CLP-510"
+                Throughput 24
+
+                ModelName "CLP-510"
+                PCFileName "clp510.ppd"
+            }
+        }
+        //{
+        //    Attribute QPDL QPDLVersion "5"
+        //    Attribute General CMSFile "CLP-610"
+        //    #import "reverseduplex.defs"
+
+        //    ModelName "CLP-610"
+        //    PCFileName "clp610.ppd"
+        //}
+        //{
+        //    Attribute QPDL QPDLVersion "5"
+        //    Attribute General CMSFile "CLP-610"
+        //    #import "reverseduplex.defs"
+
+        //    ModelName "CLP-610ND"
+        //    PCFileName "clp610nd.ppd"
+        //}
+    }
+
+    // Color printers V. 2 (JBIG algorithm)
+    {
+        #import "color-v2.defs"
+        Attribute QPDL PacketSize "512"
+        #import "manualduplex.defs"
+
+
+        // QPDL Version 1
+        {
+            Attribute QPDL QPDLVersion "1"
+            Attribute General DocHeaderValues "<0><0><0>"
+            {
+                Attribute General CMSFile "CLP-200"
+
+                ModelName "CLP-200"
+                PCFileName "clp200.ppd"
+            } { 
+                Resolution - 1 0 0 0 "1200x600dpi/1200x600 DPI"
+                Resolution - 1 0 0 0 "1200dpi/1200 DPI"
+                Attribute General CMSFile "CLP-600"
+                Throughput 20
+
+                ModelName "CLP-600"
+                PCFileName "clp600.ppd"
+            }
+        }
+
+        // QPDL Version 2
+        {
+            Attribute QPDL QPDLVersion "2"
+            Attribute General DocHeaderValues "<0><0><1>"
+
+            {
+                Attribute General CMSFile "CLX-2170"
+
+                ModelName "CLX-2170"
+                PCFileName "clx2170.ppd"
+            } {
+                Resolution - 1 0 0 0 "1200dpi/1200 DPI"
+
+                {
+                    Resolution - 1 0 0 0 "300dpi/300 DPI"
+                    Attribute General CMSFile "CLP-300"
+                    Throughput 4
+
+		    {
+                        ModelName "CLP-300"
+                        PCFileName "clp300.ppd"
+		    } {
+                        ModelName "CLP-310N"
+                        PCFileName "clp310n.ppd"
+		    }
+                } {
+                    Resolution - 1 0 0 0 "1200x600dpi/1200x600 DPI"
+
+                    {
+                        Attribute General CMSFile "CLX-216x"
+
+                        ModelName "CLX-216X"
+                        PCFileName "clx216x.ppd"
+                    } {
+                        Attribute General CMSFile "CLX-3160"
+
+                        ModelName "CLX-3160"
+                        PCFileName "clx3160.ppd"
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Color printers V. 3 (Banded JBIG algorithm)
+{
+    #import "spl2bandedjbig.defs"
+    #import "filterColor.defs"
+    #import "powersave.defs"
+    #import "color-v3.defs"
+    #import "manualduplex.defs"
+    Attribute QPDL QPDLVersion "5"
+    Attribute QPDL PacketSize  "512"
+    Attribute General DocHeaderValues "<0><0><1>"
+    Resolution - 1 0 0 0 "1200x600dpi/1200x600 DPI"
+    Resolution - 1 0 0 0 "1200dpi/1200 DPI"
+    Throughput 4
+    {
+        Attribute General CMSFile "CLP-310"
+
+        ModelName "CLP-310"
+        Attribute "1284DeviceID" "" "MFG:Samsung;MDL:CLP-310 Series;CMD:SPLC,FWV;"
+        PCFileName "clp310.ppd"
+    }{
+        Attribute General CMSFile "CLP-315"
+
+        ModelName "CLP-315"
+        PCFileName "clp315.ppd"
+    }
+}
+
+
+
+/* vim: set expandtab tabstop=4 shiftwidth=4 smarttab tw=80 enc=utf8: */
+
