@@ -1,0 +1,12 @@
+.DS_Store
+
+# Output di build
+splix/optimized/
+splix/debug/
+splix/.build/
+splix/.deps/
+splix/.defs.mk
+splix/ppd/*.drv
+pkg/build/
+pkg/dist/
+pkg/resources/COPYING.txt
