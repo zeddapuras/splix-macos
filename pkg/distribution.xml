@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<installer-gui-script minSpecVersion="2">
+    <title>SpliX for macOS</title>
+    <welcome file="welcome.html" mime-type="text/html"/>
+    <license file="COPYING.txt" mime-type="text/plain"/>
+    <conclusion file="conclusion.html" mime-type="text/html"/>
+    <options customize="never" require-scripts="false" hostArchitectures="arm64,x86_64"/>
+    <domains enable_localSystem="true" enable_anywhere="false" enable_currentUserHome="false"/>
+    <os-version min="11.0"/>
+    <choices-outline>
+        <line choice="default"/>
+    </choices-outline>
+    <choice id="default" title="SpliX">
+        <pkg-ref id="@PKG_ID@"/>
+    </choice>
+    <pkg-ref id="@PKG_ID@" version="@PKG_VERSION@" onConclusion="none">SpliX-core.pkg</pkg-ref>
+</installer-gui-script>

@@ -1,0 +1,5 @@
+#!/bin/sh
+# CUPS rifiuta i filtri con permessi insicuri: root:wheel, 755.
+chown -R root:wheel /Library/Printers/SpliX
+chmod 755 /Library/Printers/SpliX/Filters/rastertoqpdl /Library/Printers/SpliX/uninstall.sh
+exit 0
